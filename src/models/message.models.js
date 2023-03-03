@@ -1,8 +1,8 @@
 
 const { DataTypes } = require("sequelize");
 
-const db = require("../utils/database");
-const Participants = require("./participants.models");
+const db = require('../utils/database');
+const Participants = require('./participanst.models');
 
 const Messages = db.define("messages", {
   id: {

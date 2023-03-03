@@ -29,12 +29,13 @@ const success = ({res, status, data, message}) => {
 
 
 //?PARA RESPUESTAS DE ERRORES
-const error = ({res, status, message,fields}) => {
+const error = ({res, status, message,fields, data}) => {
     res.status(status).json({
         error: true,
         status: status,
         message: message,
-        fields: fields
+        fields: fields,
+        data
     })
 
 }

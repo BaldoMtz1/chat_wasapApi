@@ -2,29 +2,35 @@
 const { DataTypes } = require("sequelize");
 
 const db = require("../utils/database");
-const Participants = require("./participants.models");
+const Conversations = require("./conversation.models");
+const Users = require('./users.models')
 
-const Messages = db.define("messages", {
+const Participants = db.define("participants", {
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
   },
-  content: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  participantId: {
+  userId: {
     type: DataTypes.UUID,
-    allowNull:false,
+    allowNull: false,
     references: {
-        model: Participants,
+        model: Users,
         key: 'id'
     }
   },
-  status: {
-    type: DataTypes.STRING,
-    defaultValue: 'Sent'
+  conversationId: {
+    type: DataTypes.UUID,
+    allowNull: false, 
+    references: {
+        model: Conversations,
+        key: 'id'
+    }
+  },
+  isAdmin: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
   }
 });
 
-module.exports = Messages
+
+module.exports = Participants

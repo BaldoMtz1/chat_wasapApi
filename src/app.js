@@ -2,6 +2,11 @@ console.log('hola')
 
 const express = require('express')
 const responseHandlers = require('./utils/handleResponses')
+const db = require('./utils/database')
+const initModels = require('./models/initModels')
+const userRouter = require('./users/users.router')
+
+initModels()
 
 
 const app = express()
@@ -18,6 +23,8 @@ app.get('/', (req, res) => {
     })
 
 })
+
+app.use('/api/v1/users', userRouter)
 
 //? Esta debe de ser ultima ruta en mi app
 app.use('*' , (req, res) => {
